@@ -1,6 +1,5 @@
 """This module contains function and classes required for Taxi Fare Prediction."""
 
-import torch
 import numpy as np
 import pandas as pd
 
@@ -82,3 +81,35 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float):
     c = 2 * np.arcsin(np.sqrt(a))
     dis = rad * c
     return np.round(dis,2)
+
+
+def modify_hour(value: str):
+    """Function for modifying Hour. 
+
+    Args:
+        value (str): Hour Value.
+
+    Returns:
+        int: The Interger version of Hour.
+    """  
+    if value =='00':
+        return 0  
+    if value.startswith('0'):
+        value = value.replace('0', '')
+        return int(value)
+    else:
+        return int(value)
+    
+def am_or_pm(hour: int):
+    """Function for returning AM or PM of the Hour.
+
+    Args:
+        hour (int): Hour.
+        
+    Returns:
+        str: The AM or PM of Hour.
+    """    
+    if hour >= 0 and hour <=12:
+        return "AM"
+    else:
+        return 'PM'
